@@ -36,7 +36,7 @@
                                 ?>
                             </button>
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                <a class="dropdown-item text-center" href="#">Kijelentkezés</a>
+                                <a class="dropdown-item text-center" href="logout.php">Kijelentkezés</a>
                             </div>
                         </div>
                     </div>
