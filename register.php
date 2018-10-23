@@ -1,6 +1,7 @@
 <?php
 
     if (isset($_POST['submit'])) {
+        $db = new mysqli('localhost','Konlll','Kornel2005','meal_calculator');
         $errors = array();
         $true = true;
 
@@ -11,22 +12,32 @@
         $username_regex = '/^[a-zA-Z][a-zA-Z0-9-_\.]{1,20}$/';
         $password_regex = '/(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/';
 
+        $foglalt_e_username_sql = "SELECT username from users WHERE username='$username'";
+        $foglalt_e_email_sql = "SELECT email from users WHERE email='$email'";
+
+        $foglalt_e_username_query = $db->query($foglalt_e_username_sql);
+        $foglalt_e_email_query = $db->query($foglalt_e_email_sql);
+
         if (empty($username)) {
             $true = false;
             array_push($errors, "Nincs megadva felhasználónév!");
-        }
-        if (!empty($username) && !preg_match($username_regex, $username)) {
+        }else if (!empty($username) && !preg_match($username_regex, $username)) {
             $true = false;
             array_push($errors, "A felhasználónév minimum 2, max 20 karakter lehet!");
+        }else if($foglalt_e_username_query->num_rows>0){
+            $true = false;
+            array_push($errors, "A felhasználónév már foglalt!");
         }
 
         if (empty($email)) {
             $true = false;
             array_push($errors,"Nincs megadva e-mail cím!");
-        }
-        if(!empty($email) && !filter_var($email, FILTER_VALIDATE_EMAIL)){
+        }else if(!empty($email) && !filter_var($email, FILTER_VALIDATE_EMAIL)){
             $true = false;
             array_push($errors,"Az e-mail cím nem megfelelő formátumú!");
+        }else if($foglalt_e_email_query->num_rows>0){
+            $true = false;
+            array_push($errors, "Az e-mail cím már foglalt!");
         }
 
         if (empty($password)) {
@@ -49,7 +60,6 @@
 
         if ($true) {
             $password = sha1($password);
-            $db = new mysqli('localhost','Konlll','Kornel2005','meal_calculator');
             
             $sql = "INSERT INTO users(username,email,password,date) VALUES('$username','$email','$password',NOW())";
             $db->query($sql);
