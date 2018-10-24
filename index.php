@@ -1,7 +1,8 @@
 <?php
 	session_start();
 	if (!empty($_SESSION['username'])) {
-		header('location: home.php');
+		header('location: home.php');ű
+		session_destroy();
 	}
 
 	if (isset($_POST['submit'])) {
