@@ -1,4 +1,8 @@
 <?php
+    session_start();
+    if (!empty($_SESSION['username'])) {
+        header('location: home.php');
+    }
 
     if (isset($_POST['submit'])) {
         $db = new mysqli('localhost','Konlll','Kornel2005','meal_calculator');
@@ -63,7 +67,6 @@
             
             $sql = "INSERT INTO users(username,email,password,date) VALUES('$username','$email','$password',NOW())";
             $db->query($sql);
-            session_start();
             $_SESSION['registered'] = "<div class='alert alert-success' role='alert'>Sikeres regisztráció!</div>";
             header('location: index.php');
 

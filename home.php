@@ -1,4 +1,10 @@
-<!DOCTYPE html>
+<?php
+    session_start();
+    if (empty($_SESSION['username'])) {
+        header('location: index.php');
+        session_destroy();
+    }
+?><!DOCTYPE html>
 <html>
 	<head>
 		<title>Bejelentkezés</title>
@@ -31,7 +37,6 @@
                         <div class="dropdown">
                             <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <?php
-                                    session_start();
                                     echo "Üdv: {$_SESSION['username']}";
                                 ?>
                             </button>

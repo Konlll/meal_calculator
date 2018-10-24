@@ -1,4 +1,9 @@
 <?php
+	session_start();
+	if (!empty($_SESSION['username'])) {
+		header('location: home.php');
+	}
+
 	if (isset($_POST['submit'])) {
 		$errors = array();
 		$true = true;
@@ -24,7 +29,6 @@
 
 			if (mysqli_num_rows($query) == 1) {
 				while ($sor = mysqli_fetch_assoc($query)) {
-					session_start();
 					$_SESSION['belepve'] = "<div class='alert alert-success' role='alert'>Sikeres bejelentkezés!</div>";
 					$_SESSION['username'] = $sor['username'];
 					header('location: home.php');
@@ -53,7 +57,6 @@
 
 			<?php
 				// Sikeres regisztráció esetén
-				session_start();
 				if (isset($_SESSION['registered'])) {
 					echo $_SESSION['registered'];
 				}
