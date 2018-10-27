@@ -7,12 +7,13 @@
 ?><!DOCTYPE html>
 <html>
 	<head>
-		<title>Bejelentkezés</title>
+		<title>Főoldal</title>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 		<link rel="shortcut icon" href="logo/favicon.ico" type="image/x-icon">
 		<!-- CSS files -->
 		<link rel="stylesheet" href="lib/bootstrap/css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/main.css">
 	</head>
 	<body>
 		<div class="container-fluid">
@@ -21,16 +22,19 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-                    <a class="navbar-brand" href="#">Meal Calculator</a>
-                    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                    <a class="navbar-brand" href="home.php"><img src="logo/favicon.ico" alt="" class="img-responsive"> Meal Calculator</a>
+                    <ul class="navbar-nav mr-auto mt-2 mt-lg-0 nav-left">
                         <li class="nav-item active">
-                            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                            <a class="nav-link" href="home.php">Főoldal <span class="sr-only">(current)</span></a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Link</a>
+                        <li class="nav-item active">
+                            <a href="receptek.php" class="nav-link">Receptek</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link disabled" href="#">Disabled</a>
+                        <li class="nav-item active">
+                            <a href="#" class="nav-link">Galéria</a>
+                        </li>
+                        <li class="nav-item active">
+                            <a href="#" class="nav-link">Elérhetőség</a>
                         </li>
                     </ul>
                     <div class="float-right mr-5">

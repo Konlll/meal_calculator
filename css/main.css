@@ -1,0 +1,9 @@
+body {
+  background-color: #ccc;
+}
+nav {
+  font-size: 20px;
+}
+.nav-left {
+  margin-left: 20%;
+}
