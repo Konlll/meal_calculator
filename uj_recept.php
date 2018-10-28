@@ -7,13 +7,13 @@
 ?><!DOCTYPE html>
 <html>
 	<head>
-		<title>Főoldal</title>
+		<title>Receptek</title>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 		<link rel="shortcut icon" href="logo/favicon.ico" type="image/x-icon">
 		<!-- CSS files -->
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.2/css/all.css">
 		<link rel="stylesheet" href="lib/bootstrap/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.2/css/all.css">
         <link rel="stylesheet" href="css/main.css">
 	</head>
 	<body>
@@ -57,6 +57,44 @@
                     </div>
                 </div>
             </nav>
+        </div>
+
+        <div class="container">
+            <form method="POST" action="uj_recept.php">
+                <div class="form-group">
+                    <label for="etel_neve">Étel neve</label>
+                    <input type="text" class="form-control" id="etel_neve" placeholder="Írja be egy étel nevét!">
+                </div>
+                <div class="form-group">
+                    <label for="etel_leirasa">Étel leírása</label>
+                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                </div>
+                <label for="fok_szama">Fők száma</label>
+                <div class="input-group">
+                    <input type="number" class="form-control" id="fok_szama" aria-describedby="basic-addon1" min=1>
+                    <div class="input-group-append">
+                        <span class="input-group-text" id="basic-addon1">fő</span>
+                    </div>
+                </div><br>
+                <label for="nyereseg">Nyereség</label>
+                <div class="input-group">
+                    <input type="number" class="form-control" id="nyereseg" aria-describedby="basic-addon2" min=0 max=100>
+                    <div class="input-group-append">
+                        <span class="input-group-text" id="basic-addon2">%</span>
+                    </div>
+                </div><br>
+                <div class="form-group">
+                    <a class="dropdown-toggle" style="color: #000; text-decoration: none;" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                        Alapanyagok
+                    </a>
+                    <div class="collapse" id="collapseExample">
+                        <div class="card card-body">
+                            
+                        </div>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary">Bevitel</button>
+            </form>
         </div>
 
 
