@@ -89,7 +89,9 @@
                     </a>
                     <div class="collapse" id="collapseExample">
                         <div class="card card-body">
-                            
+                            <input class="form-control" type="text" value="alma" id="alma" readonly onClick="add()">
+                            <p id="alapanyag"></p>
+                            <a href="uj_alapanyag.php">Új alapanyag</a>
                         </div>
                     </div>
                 </div>
@@ -99,6 +101,12 @@
 
 
 		<!-- Script files -->
+        <script>
+            function add(){
+                var alma = document.getElementById('alma');
+                var alapanyag = document.getElementById('alapanyag').innerHTML = alma.value;
+            }
+        </script>
         <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 		<script src="lib/bootstrap/js/bootstrap.min.js"></script>
 	</body>
