@@ -1,4 +1,6 @@
 <?php
+    $db = new mysqli('localhost','Konlll','Kornel2005','meal_calculator');
+    mysqli_query($db, 'SET NAMES UTF8');
     session_start();
     if (empty($_SESSION['username'])) {
         header('location: index.php');
@@ -61,13 +63,21 @@
 
         <div class="container">
             <form method="POST" action="uj_recept.php">
+                <?php
+                    if (isset($_SESSION['uj_alapanyag'])) {
+                        echo $_SESSION['uj_alapanyag'];
+                    }
+                    $lekerdez = "SELECT * FROM alapanyagok";
+                    $lekerdez_query = $db->query($lekerdez);
+
+                ?>
                 <div class="form-group">
                     <label for="etel_neve">Étel neve</label>
                     <input type="text" class="form-control" id="etel_neve" placeholder="Írja be egy étel nevét!">
                 </div>
                 <div class="form-group">
                     <label for="etel_leirasa">Étel leírása</label>
-                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                    <textarea class="form-control" id="etel_leirasa" rows="3"></textarea>
                 </div>
                 <label for="fok_szama">Fők száma</label>
                 <div class="input-group">
@@ -89,9 +99,21 @@
                     </a>
                     <div class="collapse" id="collapseExample">
                         <div class="card card-body">
-                            <input class="form-control" type="text" value="alma" id="alma" readonly onClick="add()">
+                            <?php
+                                while($sor = mysqli_fetch_assoc($lekerdez_query)){
+
+                                    echo "<input class='form-control' type='text' value='{$sor['nev']}' id='{$sor['nev']}' readonly onClick='add()'><br>";
+                                    echo "<script>
+                                                function add(){
+                                                    var id = document.getElementById('{$sor['ID']}');
+                                                    var alapanyag_nev = document.getElementById('{$sor['nev']}');
+                                                    var alapanyag = document.getElementById('alapanyag').innerHTML = alapanyag_nev.value;
+                                                }
+                                          </script>";
+                                }
+                            ?>
                             <p id="alapanyag"></p>
-                            <a href="uj_alapanyag.php">Új alapanyag</a>
+                            <a href="uj_alapanyag.php"><i class="fas fa-plus"></i> Új alapanyag</a>
                         </div>
                     </div>
                 </div>
@@ -101,12 +123,6 @@
 
 
 		<!-- Script files -->
-        <script>
-            function add(){
-                var alma = document.getElementById('alma');
-                var alapanyag = document.getElementById('alapanyag').innerHTML = alma.value;
-            }
-        </script>
         <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 		<script src="lib/bootstrap/js/bootstrap.min.js"></script>
 	</body>
